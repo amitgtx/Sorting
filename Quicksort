@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+void swap(int A[],int a,int b)
+{
+ int temp=A[a];
+ A[a]=A[b];
+ A[b]=temp;
+}
+
+int partition(int l,int u,int A[])
+{
+	int p=(l+u)/2;
+	swap(A,u,p);
+	int i,st=l;
+	for(i=l;i<u;i++)
+		if(A[i]<A[u]){swap(A,st,i);st++;}
+	swap(A,st,u);
+	return st;
+}
+void quicksort(int A[],int l,int u)
+{
+	if(l<u){
+
+		int p=partition(l,u,A);
+		quicksort(A,l,p-1);
+		quicksort(A,p+1,u);
+	}
+}
